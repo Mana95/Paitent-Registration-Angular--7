@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <!-- The image half -->
+    <div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+
+    <!-- The content half -->
+    <div class="col-md-6 bg-light">
+      <div class="login d-flex align-items-center py-5">
+
+        <!-- Demo content-->
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-10 col-xl-7 mx-auto">
+              <h4 class="display-6">Patient Register Page <button type="button"  routerLink= '/home' class="btn btn-outline-primary btn-sm"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Back to Portal</button> </h4> 
+     
+              <p class="text-muted mb-4">Register Your Patient</p>
+              <form [formGroup] = "registerFrom" (ngSubmit)="onSubmit()">
+           
+                <div class="form-group mb-3">
+                  <input id="input_password" type="text" formControlName="firstname" placeholder="First Name" required=""
+                    class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
+                    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstname.errors.required">Firstname is required</div>
+                    </div>
+              
+                  </div>
+                <div class="form-group mb-3">
+                  <input id="input_password" type="text" formControlName="lastname" placeholder="Last Name" required=""
+                    class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+                    <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastname.errors.required">Lastname is required</div>
+                    </div>
+               
+                  </div>
+
+                <div class="form-group mb-3">
+                  <input id="input_password" type="text" formControlName="id" placeholder="ID" required=""
+                    class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" [ngClass]="{ 'is-invalid': submitted && f.id.errors }">
+                    <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+                        <div *ngIf="f.id.errors.required">Id is required</div>
+                    </div>
+               
+                  </div>
+
+                <div class="form-group mb-3">
+                  <!-- <select id="inputState" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" (change)= "roleName($event)" >
+                    <option value="Choose" selected>Patient Type</option>
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                -->
+                <select class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" (change)= "roleName($event)">
+                  <option value="Choose" selected>Patient Type</option>
+                  <option *ngFor="let ops of Patients" [value]="ops" >{{ ops }}</option>
+                </select>
+
+                  </div>
+                <div class="form-group mb-3">
+                  <input type="text" formControlName="emailname" placeholder="email" required=""
+                    class="form-control rounded-pill border-0 shadow-sm px-4 text-primary"  [ngClass]="{ 'is-invalid': submitted && f.emailname.errors }">
+                    <div *ngIf="submitted && f.emailname.errors" class="invalid-feedback">
+                        <div *ngIf="f.emailname.errors.required">emailname is required</div>
+                        <div *ngIf="f.emailname.errors.email">Email must be a valid email address</div>
+                    </div>
+               
+                  </div>
+
+                <div class="form-group mb-3">
+                  <input matInput formControlName="phonenumber" placeholder="Phone Number"  maxlength="10" (keypress)=_keyPress($event)   class="form-control rounded-pill border-0 shadow-sm px-4  text-primary"  [ngClass]="{ 'is-invalid': submitted && f.phonenumber.errors }">
+                  
+                  
+                  
+                  <div *ngIf="submitted && registerFrom.get('phonenumber').hasError('required')" class="invalid-feedback">
+                    Phone Number is required
+                  </div>
+                  <div *ngIf="registerFrom.get('phonenumber').hasError('pattern')" class="invalid-feedback">
+                    It is not a valid mobile number.
+                  </div>
+
+                </div>
+                <!-- <input matInput formControlName="phonenumber" maxlength="10" (keypress)=_keyPress($event)   class="form-control rounded-pill border-0 shadow-sm px-4  text-primary"> -->
+
+
+              
+
+                <div class="form-group mb-3">
+                  <input id="input_text" type="text" formControlName="address" placeholder="Address" required="" autofocus=""
+                    class="form-control rounded-pill border-0 shadow-sm px-4  text-primary"  [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                        <div *ngIf="f.address.errors.required">Address is required</div>
+                    </div>
+               
+                  </div>
+                <!--registraion page-->
+                
+                <div class="form-group mb-3">
+                  <label><b>Photo Capture</b></label>
+                    <webcam  [height]="300" [width]="300"  [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"  [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"  [imageQuality]="1"
+                    (cameraSwitched)="cameraWasSwitched($event)"
+                    (initError)="handleInitError($event)"></webcam>
+                    
+                   
+                  <button type="button"
+                  class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm"  (click)="toggleWebcam();">Toggle Webcam</button>
+                  
+                  <button type="button"
+                  class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm"  (click)="triggerSnapshot();">Take A Snapshot</button>
+                  </div>
+                  <div class="snapshot" *ngIf="webcamImage">
+                     
+                      <img  [height]="200" [width]="200" [src]="webcamImage.imageAsDataUrl"/>
+
+                    </div>
+                <button type="submit"
+                  class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Register Your Patient</button>
+                  
+              </form>
+            </div>
+          </div>
+        </div><!-- End -->
+
+      </div>
+    </div><!-- End -->
+
+  </div>
+</div>
+
+<!---Anthimata Change kare registration eke validation set eka -->

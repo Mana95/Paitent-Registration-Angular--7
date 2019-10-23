@@ -1,0 +1,54 @@
+<style>
+  .GreenText {
+    background-color: green;
+  }
+
+  .blueText {
+    background-color: blue;
+  }
+
+  .redText {
+    background-color: red;
+  }
+
+  .YellowText {
+    background-color: yellow;
+  }
+</style>
+<div class="row">
+  <div class="container">
+    <h1 class="display-4 text-primary" >
+      <b>All Patient Status</b>
+      <button type="button"  routerLink= '/home' class="btn btn-outline-primary btn-sm">Back to Portal</button> 
+    </h1>
+    <hr />
+    <!-- <p>Your role is: <strong>{{currentUser.role}}</strong>.</p> -->
+    <br />
+    <table #dataTable class="table table-striped table-hover table-bordered" id="mytable">
+      <caption>
+        <b>View Patient Details</b>
+      </caption>
+      <thead>
+        <tr>
+          <th style="text-align: center;" scope="col" class="text-primary">Patient</th>
+          <th style="text-align: center;" scope="col" class="text-primary">Profile</th>
+          <th style="text-align: center;" scope="col" class="text-primary">Email Address</th>
+          <th style="text-align: center;" scope="col" class="text-primary">Role</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+
+        <tr *ngFor="let data of userview  ">
+          <td style="text-align: center;">{{data.firstName}}</td>
+          <td> <img class="avatar"[src]="data.image"/></td>
+          <td style="text-align: center;">{{ data.email}}</td>
+          <td style="text-align: center;">{{ data.role}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

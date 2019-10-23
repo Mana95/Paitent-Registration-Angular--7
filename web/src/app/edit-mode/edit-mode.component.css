@@ -1,0 +1,21 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('../../assets/3.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.webcam{
+  border-radius: 50%;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}

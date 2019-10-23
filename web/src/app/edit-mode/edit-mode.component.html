@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="row no-gutter">
+      <!-- The image half -->
+      <div class="col-md-6 d-none d-md-flex bg-image">
+          <div class="login d-flex align-items-center py-3">
+          <div class="col-lg-7 col-xl-7 mx-auto">
+              <span class="border">
+   <webcam [height]="500" [width]="500" (change)="getFaceRecord()" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"  [allowCameraSwitch]="allowCameraSwitch"  [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"  [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)" ></webcam>
+  </span> 
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+       
+         
+         <br/>  
+          </div>
+          </div>
+       
+      
+    
+
+        <!-- <webcam></webcam> -->
+      </div>
+  
+  
+      <!-- The content half -->
+      <div class="col-md-6 bg-light">
+        <div class="login d-flex align-items-center py-5">
+  
+          <!-- Demo content-->
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 col-xl-7 mx-auto">
+                <!-- <h4 class="display-6">Patient information</h4>
+                <p class="text-muted mb-4">Get Your Patient information by typing your ID</p> -->
+                
+                <form [formGroup] = "viewForm"  (ngSubmit)="getFaceRecord()">
+                    <h4 class="display-6">Patient information &nbsp;&nbsp; <img [src]="data.image" alt="Image" class="avatar"> </h4>
+                    <p class="text-muted mb-4">Get Your Patient information by typing your ID  </p>
+                    
+           
+                 
+                  <div class="form-group mb-3">
+                    <input id="input_password" type="text"  [value]= "data.firstName"  placeholder="First Name"  readonly required=""
+                      class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                    
+                  </div>
+                  <div class="form-group mb-3">
+                    <input id="input_password" type="text"  placeholder="Last Name"  [value]= "data.lastName" readonly required=""
+                      class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                  </div>
+  
+                  <div class="form-group mb-3">
+                    <input id="input_password"  type="text" formControlName="id" placeholder="Enter your ID" required=""
+                      class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                  </div>
+  
+                  <div class="form-group mb-3">
+                      <input id="role" type="text" [value]= "data.role" readonly  placeholder="User" required=""
+                      class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                   
+                  </div>
+                  <div class="form-group mb-3" >
+                    <input id="email" type="email" [value]= "data.email" readonly  placeholder="email" required=""
+                      class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                  </div>
+  
+                  <div class="form-group mb-3">
+                      <input readonly  [value]= "data.phonenumber"  class="form-control rounded-pill border-0 shadow-sm px-4  text-primary" type="tel"  required="" autofocus="" placeholder="(contact No :+94 345 456 212)" id="example-tel-input">
+                    
+                  </div>
+  
+                  <div class="form-group mb-3">
+                    <input id="input_text" type="text"  [value]= "data.address" readonly  placeholder="Address" required="" autofocus="" 
+                      class="form-control rounded-pill border-0 shadow-sm px-4  text-primary">
+                  </div>
+                  <button type="submit"
+                  class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">View Patient Details
+                </button> 
+
+                <button type="button"
+                  class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" (click)="getRecord()">Save Image Information
+                </button> 
+                 
+                </form> 
+              </div>
+            </div>
+          </div><!-- End -->
+      </div>
+      </div><!-- End -->
+  
+    </div>
+  </div>
+
+
+  
