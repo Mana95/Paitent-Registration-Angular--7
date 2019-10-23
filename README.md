@@ -1,4 +1,4 @@
-# node-mongo-registration-login-api
+# Patient Registration APP
 
 NodeJS + MongoDB API for User Management, Authentication and Registration
 
